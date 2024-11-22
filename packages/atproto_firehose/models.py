@@ -56,6 +56,7 @@ def parse_frame_header(raw_header: dict) -> FrameHeader:
         frame_type = FrameType(header_op)
         if frame_type is FrameType.MESSAGE:
             return get_or_create(raw_header, MessageFrameHeader)
+        print(f"raw_header: {raw_header}")
         return get_or_create(raw_header, ErrorFrameHeader)
     except (ValueError, AtProtocolError) as e:
         raise FirehoseDecodingError('Invalid frame header') from e
