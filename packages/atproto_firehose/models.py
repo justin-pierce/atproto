@@ -64,6 +64,7 @@ def parse_frame_header(raw_header: dict) -> FrameHeader:
 def parse_frame(header: FrameHeader, raw_body: dict) -> Union['ErrorFrame', 'MessageFrame']:
     try:
         if isinstance(header, ErrorFrameHeader):
+            print(f"raw_body: {raw_body}")
             body = get_or_create(raw_body, ErrorFrameBody)
             return ErrorFrame(header, body)
         if isinstance(header, MessageFrameHeader):
